@@ -1,0 +1,10 @@
+<Limit GET>
+    Order allow,deny
+    Allow 127.0.0.1
+    Deny from all
+</Limit>
+<Limit POST>
+    Order allow,deny
+    Allow 127.0.0.1
+    Deny from all
+</Limit>

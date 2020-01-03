@@ -1,0 +1,14 @@
+{
+    "autoload": {
+        "psr-4": {
+           "Config\\": "config/",
+           "Messages\\": "messages/",
+           "": "class/"
+        }
+    },
+    "require": {
+        "kint-php/kint": "dev-master",
+        "altorouter/altorouter": "1.1.0",
+        "smarty/smarty": "3.*"
+    }
+}

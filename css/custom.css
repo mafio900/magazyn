@@ -1,0 +1,56 @@
+/* style dla inputów */
+input[type=text],[type=date], [type=password]{
+    border: none;
+    background-color: transparent;
+    color: white;
+    border-bottom: 2px solid gray;
+}
+/* style podkerślania błędów jak i poprawynych danych */
+input.error, .error .selection .select2-selection{
+    border-bottom: 2px solid #D8000C !important;
+}
+.error, .error .select2-selection__rendered{
+    color: #D8000C !important;
+}
+
+input.success, .success .selection .select2-selection{
+    border-bottom: 2px solid #28a745 !important;
+}
+.success, .success .select2-selection__rendered{
+    color: #28a745 !important;
+}
+
+/* style poprawnego wyświetlania select2 */
+.select2-selection__rendered{
+    color: #000 !important;
+}
+.select2-results__options {
+    color: #000;
+}
+
+.select2 {
+    width: 100% !important;
+}
+
+@media (min-width: 768px) {
+    .select2-selection__rendered {
+        line-height: 36px !important;
+    }
+    .select2-container .select2-selection--single {
+        height: 40px !important;
+    }
+    .select2-selection__arrow {
+        height: 39px !important;
+    }
+    .select2 {
+        width: 50% !important;
+    }
+}
+
+.close{
+    color: white;
+}
+
+.close:hover{
+    color: white;
+}
