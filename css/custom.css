@@ -54,3 +54,45 @@ input.success, .success .selection .select2-selection{
 .close:hover{
     color: white;
 }
+
+/*-------------Table style--------*/
+.border-spacing {
+    border-spacing:0 20px !important;
+}
+/*td { border-top-left-radius: 20px; }
+td { border-top-right-radius: 20px; }
+td { border-bottom-left-radius: 20px; }
+td { border-bottom-right-radius: 20px; }*/
+
+.table-header {
+    background-color: white;
+}
+.responsive-table .table-row
+{
+    margin-top: 40px; !important;
+    background-color: white;
+    border-radius: 25px !important;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.tlo
+{
+    background-color: ghostwhite;
+    border-radius: 15px !important;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.2);
+}
+.tlo2
+{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.dataTables_filter input
+{
+    margin-top: 20px;
+}
+.dataTables_length label
+{
+    margin-top: 20px;
+}
+
+
+/*-----------Table style end----------------------*/
