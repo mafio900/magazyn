@@ -17,4 +17,4 @@
             {/if}
         {/block}
     </head>
-    <body class="d-flex flex-column h-100 bg-dark text-light">
+    <body class="d-flex flex-column h-100 bg-white text-dark">

@@ -2,10 +2,12 @@
 {block name=body}
 {if isset($data)}
     <!-- BEGIN TABLE WITH DATA -->
+<div class="table-responsive tlo">
+    <div class="tlo2">
 <form action="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/usunwiele/" method="post">
-<table id="mainTable" class="table text-center text-light">
+<table id="mainTable" class="table table-borderless text-center responsive-table border-spacing">
     <thead>
-        <tr>
+    <tr class="table-header">
             <th></th>
             {block name=thead}
             {/block}
@@ -14,7 +16,7 @@
     </thead>
     <tbody>
         {foreach $data as $key => $row}
-        <tr>
+        <tr class="table-row">
             <td class="text-center"><input type="checkbox" value="{$row['id']}" name="ids[]" /></td>
             {block name=tbody}
             <th></th>
@@ -36,6 +38,8 @@
 </form>
 <button data-url="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/formularz"
 role="button" class="add-button btn btn-primary btn-sm mt-2"><i class="fa fa-plus" aria-hidden="true"></i> {block name=footButtonName}{/block}</button>
-{/if}
+</div>
+</div>
+    {/if}
 {include file="./modals/base.html.tpl"}
 {/block}
