@@ -2,7 +2,7 @@
 input[type=text],[type=date], [type=password]{
     border: none;
     background-color: transparent;
-    color: white;
+    color: #343a40;
     border-bottom: 2px solid gray;
 }
 /* style podkerślania błędów jak i poprawynych danych */
@@ -45,14 +45,6 @@ input.success, .success .selection .select2-selection{
     .select2 {
         width: 50% !important;
     }
-}
-
-.close{
-    color: white;
-}
-
-.close:hover{
-    color: white;
 }
 
 /*-------------Table style--------*/
