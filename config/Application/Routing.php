@@ -21,6 +21,10 @@ final class Routing {
     ['GET','/zamowienie/?', array('controller' => 'Zamowienie', 'action' => 'showAll'), 'zamowienie'],
     ['GET','/zamowienie/[i:id]/?', array('controller' => 'Zamowienie', 'action' => 'ajaxEditForm'), 'zamowienie_edit_form'],
     ['POST','/zamowienie/edytuj/?', array('controller' => 'Zamowienie', 'action' => 'edit'), 'zamowienie_edit'],
-    ['GET','/zamowienie/anuluj/[i:id]?', array('controller' => 'Zamowienie', 'action' => 'cancel'), 'zamowienie_cancel']
+    ['GET','/zamowienie/anuluj/[i:id]?', array('controller' => 'Zamowienie', 'action' => 'cancel'), 'zamowienie_cancel'],
+
+    //konfiguracja WZ
+    ['GET','/wz/?', array('controller' => 'WZ', 'action' => 'showAll'), 'wz'],
+    ['GET','/wz/[i:id]/?', array('controller' => 'WZ', 'action' => 'ajaxEditForm'), 'wz_form']
     ];
 }
