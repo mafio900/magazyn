@@ -3,6 +3,7 @@
 {block name=title}Lista zamówień{/block}
 
 {block name=thead}
+    <th></th>
 	<th>Zamawiający</th>
     <th>Data zamówienia</th>
     <th>Data wydania</th>
@@ -10,6 +11,7 @@
     <th>Kwota łączna (zł)</th>
 {/block}
 {block name=tbody}
+    <td></td>
     <td>{$users[$row['IdUzytkownik']]['Imie']} {$users[$row['IdUzytkownik']]['Nazwisko']}</td>
     <td>{$row['DataZamowienia']}</td>
     <td>{$row['DataWydania']}</td>

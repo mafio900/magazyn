@@ -54,7 +54,7 @@ class Zamowienie extends GlobalController
         }
         $model = $this->createModel('Zamowienie');
         $IdStatus = $model->selectOneById($_POST['id'])['IdStatus']+1;
-        if($IdStatus < 6){
+        if($IdStatus < 5){
             if(isset($_POST['DataWydania'])){
                 $model->update($_POST['id'], $IdStatus, $_POST['DataWydania']);
             }
