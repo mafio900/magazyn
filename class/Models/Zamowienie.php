@@ -16,19 +16,19 @@ class Zamowienie extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
 
-        if(!isset($id) && !isset($name))
+        if(!isset($id))
             throw new \Exceptions\EmptyValue;
         try	{
             $query = 'UPDATE `'.$this->table.'`';
             $query .= ' SET IdStatus = :IdStatus';
-            if($DataWydania){
-                $query = ', DataWydania = :DataWydania';
+            if($DataWydania != null){
+                $query .= ', DataWydania = :DataWydania';
             }
             $query .= ' WHERE id = :id';
             $stmt = $this->pdo->prepare($query);
 
             $stmt->bindValue(':IdStatus', $IdStatus, PDO::PARAM_INT);
-            if($DataWydania){
+            if($DataWydania != null){
                 $stmt->bindValue(':DataWydania', $DataWydania, PDO::PARAM_STR);
             }
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);

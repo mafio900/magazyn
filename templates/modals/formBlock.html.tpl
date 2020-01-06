@@ -11,7 +11,8 @@
         {block name=body}{/block}
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-light" data-dismiss="modal">Wyjdź</button>
+        {block name=cancelButton}{/block}
         {block name=acceptButton}{/block}
     </div>
   </form>

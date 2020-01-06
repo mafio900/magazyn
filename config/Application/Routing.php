@@ -20,6 +20,7 @@ final class Routing {
     //konfiguracja Zamowienie
     ['GET','/zamowienie/?', array('controller' => 'Zamowienie', 'action' => 'showAll'), 'zamowienie'],
     ['GET','/zamowienie/[i:id]/?', array('controller' => 'Zamowienie', 'action' => 'ajaxEditForm'), 'zamowienie_edit_form'],
-    ['POST','/zamowienie/edytuj/?', array('controller' => 'Zamowienie', 'action' => 'edit'), 'zamowienie_edit']
+    ['POST','/zamowienie/edytuj/?', array('controller' => 'Zamowienie', 'action' => 'edit'), 'zamowienie_edit'],
+    ['GET','/zamowienie/anuluj/[i:id]?', array('controller' => 'Zamowienie', 'action' => 'cancel'), 'zamowienie_cancel']
     ];
 }

@@ -35,56 +35,43 @@ class Zamowienie extends GlobalController
         $this->view->setTemplate('ajaxModals/editZamowienie');
         $model = $this->createModel('Zamowienie');
         $result['data'] = $model->selectOneById($id);
-        if($result['data']['IdStatus']<='4'){
-            $result['statusy'] = $model->transferByColumn($model->selectAllOrderBy(null, 'ASC', 'id BETWEEN ', $result['data']['IdStatus'].' AND 4', 'Status'));
-        }
-        else {
-            $result['statusy'] = $model->transferByColumn($model->selectAllOrderBy(null, 'ASC', 'id =', '5', 'Status'));
-        }
+        $result['statusObecny'] = $model->selectOneById($result['data']['IdStatus'], 'Status');
+        $result['statusNastepny'] = $model->selectOneById($result['data']['IdStatus'] + 1, 'Status');
         $result['users'] = $model->transferByColumn($model->selectAll('Uzytkownik'));
-        $result['towary'] = $model->transferByColumn($model->selectAllOrderBy(null, 'ASC', 'IdZamowienie =', $id, 'ZamowienieTowar'));
+        $result['towary'] = $model->transferByColumn($model->selectAll('Towar'));
+        $result['zamowienietowary'] = $model->transferByColumn($model->selectAllOrderBy(null, 'ASC', 'IdZamowienie =', $id, 'ZamowienieTowar'));
         if($result['data']['IdStatus']=='4')
             $result['currentData'] = date('Y-m-d H:i');
 
         return $result;
     }
 
-    public function delete($id)
-    {
-        $this->deleteOne($id);
-        $this->redirect('zamowienie/');
-    }
-
-    public function deletePlenty()
-    {
-        $this->deleteGiven($_POST['ids']);
-        $this->redirect('zamowienie/');
-    }
-
-    public function add()
-    {
-        $this->check(['Nazwa', 'CenaSprzedazy', 'IdJednostkaMiary', 'ProcentVat', 'Dzial', 'Regal', 'Polka', 'StanMagazynowy', 'StanMax', 'StanMin', 'StanDysponowany'], $_POST);
-        if($_POST['Nazwa']==''){
-            throw new \Exceptions\EmptyValue;
-        }
-        $model = $this->createModel('Towar');
-        $model->insert($_POST['Nazwa'],
-        $_POST['CenaSprzedazy'], $_POST['IdJednostkaMiary'], $_POST['ProcentVat'], $_POST['Dzial'],
-        $_POST['Regal'], $_POST['Polka'], $_POST['StanMagazynowy'], $_POST['StanMax'], $_POST['StanMin'], $_POST['StanDysponowany']);
-        $this->redirect('zamowienie/');
-    }
-
     public function edit()
     {
-        $this->check(['id', 'Nazwa', 'CenaSprzedazy', 'IdJednostkaMiary', 'ProcentVat', 'Dzial', 'Regal', 'Polka', 'StanMagazynowy', 'StanMax', 'StanMin', 'StanDysponowany'], $_POST);
-        if($_POST['Nazwa']=='' && $_POST['id']=='')
-        {
+        $this->check(['id'], $_POST);
+        if($_POST['id']=='' || (isset($_POST['DataWydania']) && $_POST['DataWydania']=='')) {
             throw new \Exceptions\EmptyValue;
         }
-        $model = $this->createModel('Towar');
-        $model->update($_POST['id'], $_POST['Nazwa'],
-        $_POST['CenaSprzedazy'], $_POST['IdJednostkaMiary'], $_POST['ProcentVat'], $_POST['Dzial'],
-        $_POST['Regal'], $_POST['Polka'], $_POST['StanMagazynowy'], $_POST['StanMax'], $_POST['StanMin'], $_POST['StanDysponowany']);
+        $model = $this->createModel('Zamowienie');
+        $IdStatus = $model->selectOneById($_POST['id'])['IdStatus']+1;
+        if($IdStatus < 6){
+            if(isset($_POST['DataWydania'])){
+                $model->update($_POST['id'], $IdStatus, $_POST['DataWydania']);
+            }
+            else{
+                $model->update($_POST['id'], $IdStatus);
+            }
+        }
+        $this->redirect("zamowienie/");
+    }
+
+    public function cancel($id)
+    {
+        if($id==''){
+            throw new \Exceptions\EmptyValue;
+        }
+        $model = $this->createModel('Zamowienie');
+        $model->update($id, '6');
         $this->redirect("zamowienie/");
     }
 
