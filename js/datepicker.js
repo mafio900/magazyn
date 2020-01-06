@@ -15,6 +15,5 @@
             closeText: 'Wybierz',
             currentText: 'Teraz'
         });
-        $('.date').datetimepicker('setDate', (new Date()) );
     }
 })(jQuery);
