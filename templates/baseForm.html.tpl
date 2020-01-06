@@ -13,5 +13,5 @@
             </div>
         </div>
     </form>
-    {block name=rezusl}{/block}
+    {block name=zamowienietowar}{/block}
 {/block}

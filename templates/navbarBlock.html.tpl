@@ -12,6 +12,10 @@
                     <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}towar/"> Towary </a>
                 </li>
 
+                <li class="nav-item {if $active=='Zamowienie'}active{/if}">
+                    <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}zamowienie/"> Zamowienia </a>
+                </li>
+
             </ul>
         </div>
     </div>
