@@ -7,7 +7,7 @@ pz/edytuj/
 {/block}
 {block name=submitName}Edytuj{/block}
 {block name=where}pz{/block}
-{block name=setIsDone}<a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}pz/done/{$data['id']}" role="button" class="btn btn-danger">Zakończ edycję</a>{/block}
+{block name=setIsDone}<a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}pz/done/{$data['id']}" role="button" class="btn btn-danger">Generuj PZ</a>{/block}
 
 {block name=formBody}
   {include file="./editForm.html.tpl"}
