@@ -1,7 +1,7 @@
 {if !isset($data)}
 <div class="form-control-* form-row mb-2">
     <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="NumerPZ">Numer PZ</label>
-    <input class="col-12 col-md-6" name="NumerPZ" type="text" required>
+    <input class="col-12 col-md-6" name="NumerPZ" type="text" disabled>
     <div class="col-12 text-center text-md-left"></div>
 </div>
 <div class="form-control-* form-row mb-2">

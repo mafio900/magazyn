@@ -13,6 +13,22 @@ class PZ extends PDODatabase
 
     public function insert($NumerPZ, $IdDostawca, $NazwaDostawcy, $Miasto, $Ulica, $NrBudynku, $KodPocztowy, $NIP, $DataDostawy)
     {
+        $array = str_split($DataDostawy);
+        $NumerPZ = null;
+        foreach ($array as $char)
+        {
+            if($char != " ")
+            {
+                $NumerPZ .= $char;
+            }
+            else
+             {
+                 break;
+            }
+        }
+        $NumerPZNew = str_replace('-', '/', $NumerPZ);
+        //d($NumerPZNew);
+       // d($NumerPZTmp);
         $id = -1;
         $this->testConnection();
         $this->testTable($this->table);
@@ -41,6 +57,9 @@ class PZ extends PDODatabase
         } catch(\PDOException $e) {
             throw new \Exceptions\Query($e);
         }
+
+        $NumerPZ .='/'.$id.'/PZ';
+        $this->update($id, $NumerPZ, $IdDostawca, $NazwaDostawcy, $Miasto, $Ulica, $NrBudynku, $KodPocztowy, $NIP, $DataDostawy);
         return $id;
     }
 
