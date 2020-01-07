@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 07 Sty 2020, 15:25
+-- Czas generowania: 07 Sty 2020, 20:59
 -- Wersja serwera: 5.7.26-29-log
 -- Wersja PHP: 5.6.40
 
@@ -94,7 +94,49 @@ CREATE TABLE `PZ` (
 --
 
 INSERT INTO `PZ` (`id`, `NumerPZ`, `IdDostawca`, `NazwaDostawcy`, `Miasto`, `Ulica`, `NrBudynku`, `KodPocztowy`, `NIP`, `DataDostawy`, `KwotaLaczna`, `IsDone`) VALUES
-(1, 'PZ 01/07/01/2020', 2, 'Rekman', 'Sieradz', 'Jana Pawła', '12/B', '98-300', '5566223388', '2020-01-07 13:44:00', '1300.00', 1);
+(1, 'PZ 1/2020/01/07', 2, 'Rekman', 'Sieradz', 'Jana Pawła', '12/B', '98-300', '5566223388', '2020-01-07 19:58:00', '1300.00', 1);
+
+--
+-- Wyzwalacze `PZ`
+--
+DELIMITER $$
+CREATE TRIGGER `tr_PZ_a_U` AFTER UPDATE ON `PZ` FOR EACH ROW BEGIN
+DECLARE done BOOLEAN DEFAULT FALSE;
+DECLARE il DOUBLE;
+DECLARE idT INT;
+DECLARE cur1 CURSOR FOR SELECT Ilosc FROM PZTowar WHERE IdPZ = NEW.id;
+DECLARE cur2 CURSOR FOR SELECT IdTowar FROM PZTowar WHERE IdPZ = NEW.id;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+IF NEW.IsDone = true THEN
+
+OPEN cur1;
+OPEN cur2;
+
+read_loop: LOOP
+FETCH cur1 INTO il;
+FETCH cur2 INTO idT;
+IF done THEN
+	LEAVE read_loop;
+END IF;
+SET @StanM = (SELECT StanMagazynowy FROM Towar WHERE id = idT);
+SET @StanD = (SELECT StanDysponowany FROM Towar WHERE id = idT);
+
+UPDATE `Towar` 
+SET `StanMagazynowy`= (SELECT @StanM) + il,
+	`StanDysponowany`= (SELECT @StanD) + il
+WHERE id = idT;
+
+END LOOP;
+
+CLOSE cur1;
+CLOSE cur2;
+
+END IF;
+
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -135,14 +177,6 @@ UPDATE `PZ`
 SET `KwotaLaczna`= (SELECT @vNewKW)
 WHERE id = OLD.IdPZ;
 
-SET @vCurrentStanMagazynowy = (SELECT StanMagazynowy FROM Towar WHERE id = OLD.IdTowar);
-SET @vCurrentStanDysponowany = (SELECT StanDysponowany FROM Towar WHERE id = OLD.IdTowar);
-
-UPDATE `Towar`
-SET `StanMagazynowy` = (SELECT @vCurrentStanMagazynowy) - OLD.Ilosc,
-	`StanDysponowany` = (SELECT @vCurrentStanDysponowany) - OLD.Ilosc
-WHERE id = OLD.IdTowar;
-
 END
 $$
 DELIMITER ;
@@ -156,12 +190,6 @@ UPDATE `PZ`
 SET `KwotaLaczna`= (SELECT @vCurrentKW) + (SELECT @vKw)
 WHERE id = NEW.IdPZ;
 
-SET @vCurrentStanMagazynowy = (SELECT StanMagazynowy FROM Towar WHERE id = NEW.IdTowar);
-SET @vCurrentStanDysponowany = (SELECT StanDysponowany FROM Towar WHERE id = NEW.IdTowar);
-UPDATE `Towar`
-SET `StanMagazynowy` = (SELECT @vCurrentStanMagazynowy) + NEW.Ilosc,
-	`StanDysponowany` = (SELECT @vCurrentStanDysponowany) + NEW.Ilosc
-WHERE id = NEW.IdTowar;
 END
 $$
 DELIMITER ;
@@ -180,19 +208,6 @@ END IF;
 UPDATE `PZ` 
 SET `KwotaLaczna`= (SELECT @vNewKW)
 WHERE id = NEW.IdPZ;
-
-SET @vCurrentStanMagazynowy = (SELECT StanMagazynowy FROM Towar WHERE id = NEW.IdTowar);
-SET @vCurrentStanDysponowany = (SELECT StanDysponowany FROM Towar WHERE id = NEW.IdTowar);
-SET @vNewIlosc = NEW.Ilosc - OLD.Ilosc;
-
-IF (SELECT @vNewIlosc) < 0 THEN
-SET @vNewIlosc = 0;
-END IF;
-
-UPDATE `Towar`
-SET `StanMagazynowy` = (SELECT @vCurrentStanMagazynowy) + (SELECT @vNewIlosc),
-	`StanDysponowany` = (SELECT @vCurrentStanDysponowany) + (SELECT @vNewIlosc)
-WHERE id = NEW.IdTowar;
 
 END
 $$
@@ -237,8 +252,8 @@ INSERT INTO `Status` (`id`, `NazwaStatusu`) VALUES
 (1, 'nowe'),
 (2, 'zaakceptowane'),
 (3, 'pakowane'),
-(4, 'przygotowane do wysyłki'),
-(5, 'wysłane'),
+(4, 'przygotowane do wysyĹki'),
+(5, 'wysĹane'),
 (6, 'anulowane');
 
 -- --------------------------------------------------------
