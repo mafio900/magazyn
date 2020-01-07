@@ -9,7 +9,7 @@
         $('select[name="IdDostawca"]').rules( "add", {
             valueNotEquals: "def",
             messages: {
-                valueNotEquals: "Proszę wybrać jednostkę!"
+                valueNotEquals: "Proszę wybrać dostawcę!"
             }
         });
 
