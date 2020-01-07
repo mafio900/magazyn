@@ -53,6 +53,9 @@ class PZ extends GlobalController
                                     'pz'));
         $model = $this->createModel('PZ');
         $result['data'] = $model->selectOneById($id);
+        if($result['data']['IsDone'])
+            $this->redirect('pz/');
+
         $result['dostawcy'] = $model->transferByColumn($model->selectAll('Dostawca'));
         $result['towary'] = $model->transferByColumn($model->selectAll('Towar'));
         $result['pztowary'] = $model->transferByColumn($model->selectAllOrderBy(null, 'ASC', 'IdPZ =', $id, 'PZTowar'));
