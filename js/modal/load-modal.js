@@ -20,7 +20,7 @@ $.fn.loadModal = function(extendDefaultOptions) {
             //console.log(path);
             //asynchroniczne załadowanie widoku formularza
             $(settings.selectorModal+" "+settings.selectorContent).load(path, function() {
-                if(typeof jQuery().loadValidation !== "undefined"){
+                if(typeof jQuery().loadValidation !== "undefined" && settings.klasa != ''){
                     $(settings.selectorModal + ' form').loadValidation("#modal-form");
                     $(settings.selectorModal + ' form')[settings.klasa]();
                 }

@@ -91,7 +91,7 @@ class PDODatabase extends Model
                 $query .= ' '.$orderType;
             }
             if(isset($where) && isset($value)){
-                $query .= " WHERE ".$where." = '".$value."'";
+                $query .= " WHERE ".$where." ".$value;
             }
 
             $stmt = $this->pdo->prepare($query);

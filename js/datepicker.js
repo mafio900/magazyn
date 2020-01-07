@@ -2,7 +2,6 @@
     $.fn.loadDatePicker = function() {
         $('.date').datetimepicker({
             dateFormat: "yy-mm-dd",
-            minDate: new Date(),
             setDate: (new Date()),
             changeMonth: true,
             changeYear: true,
@@ -12,9 +11,9 @@
             timeText: 'Czas',
             hourText: 'Godzina',
 	        minuteText: 'Minuta',
+            secondText: 'Sekunda',
             closeText: 'Wybierz',
             currentText: 'Teraz'
         });
-        $('.date').datetimepicker('setDate', (new Date()) );
     }
 })(jQuery);

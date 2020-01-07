@@ -57,10 +57,10 @@ class PZ extends PDODatabase
         } catch(\PDOException $e) {
             throw new \Exceptions\Query($e);
         }
+
         $NumerPZ .='/'.$id.'/PZ';
         $this->update($id, $NumerPZ, $IdDostawca, $NazwaDostawcy, $Miasto, $Ulica, $NrBudynku, $KodPocztowy, $NIP, $DataDostawy);
         return $id;
-
     }
 
     public function update($id, $NumerPZ, $IdDostawca, $NazwaDostawcy, $Miasto, $Ulica, $NrBudynku, $KodPocztowy, $NIP, $DataDostawy)
