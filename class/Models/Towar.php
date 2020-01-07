@@ -49,7 +49,7 @@ class Towar extends PDODatabase
         $this->testConnection();
         $this->testTable($this->table);
 
-        if(!isset($id) && !isset($name))
+        if(!isset($id) && !isset($Nazwa))
             throw new \Exceptions\EmptyValue;
         try	{
             $query = 'UPDATE `'.$this->table.'`';
