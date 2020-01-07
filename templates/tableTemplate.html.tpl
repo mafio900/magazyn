@@ -21,10 +21,10 @@
             {block name=tbody}
             <th></th>
             {/block}
-            <td class="buttons"><span class="btn-group">{block name=editButton}<button data-url="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/{$row['id']}"
+            {block name=editDeleteButtons}<td class="buttons"><span class="btn-group">{block name=editButton}<button data-url="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/{$row['id']}"
             role="button" type="button" class="edit-button btn btn-primary btn-sm ml-2" title="Pokaż szczegółowe informacje"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>{/block}
             {block name=deleteButton}<a href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=footUrlName}{/block}/usun/{$row['id']}"
-            role="button" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>{/block}</span></td>
+            role="button" class="btn btn-danger btn-sm"><i class="fa fa-times" aria-hidden="true"></i></a>{/block}</span></td>{/block}
         </tr>
         {/foreach}
     </tbody>

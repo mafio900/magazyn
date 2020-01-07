@@ -20,6 +20,10 @@
                     <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}wz/"> Dokumenty wydania </a>
                 </li>
 
+                <li class="nav-item {if $active=='PZ'}active{/if}">
+                    <a class="nav-link" href="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}pz/"> Dokumenty przyjęcia </a>
+                </li>
+
             </ul>
         </div>
     </div>

@@ -25,6 +25,15 @@ final class Routing {
 
     //konfiguracja WZ
     ['GET','/wz/?', array('controller' => 'WZ', 'action' => 'showAll'), 'wz'],
-    ['GET','/wz/[i:id]/?', array('controller' => 'WZ', 'action' => 'ajaxEditForm'), 'wz_form']
+    ['GET','/wz/[i:id]/?', array('controller' => 'WZ', 'action' => 'ajaxEditForm'), 'wz_form'],
+
+    //konfiguracja PZ
+    ['GET','/pz/?', array('controller' => 'PZ', 'action' => 'showAll'), 'pz'],
+    ['GET','/pz/editform/[i:id]/?', array('controller' => 'PZ', 'action' => 'showOne'), 'pz_edit_form'],
+    ['GET','/pz/[i:id]/?', array('controller' => 'PZ', 'action' => 'ajaxEditForm'), 'pz_show_form'],
+    ['GET','/pz/usun/[i:id]?', array('controller' => 'PZ', 'action' => 'delete'), 'pz_delete'],
+    ['POST','/pz/edytuj/?', array('controller' => 'PZ', 'action' => 'edit'), 'pz_edit'],
+    ['GET','/pz/formularz/?', array('controller' => 'PZ', 'action' => 'ajaxAddForm'), 'pz_add_form'],
+    ['POST','/pz/dodaj/?', array('controller' => 'PZ', 'action' => 'add'), 'pz_add']
     ];
 }
