@@ -1,4 +1,4 @@
-{if !isset($data) && ($data['IsDone']=='0')}
+{if !isset($data)}
 <div class="form-control-* form-row mb-2">
     <label class="col-12 col-md-6 col-form-label text-center text-md-left" for="NumerPZ">Numer PZ</label>
     <input class="col-12 col-md-6" name="NumerPZ" type="text" required>
@@ -19,7 +19,11 @@
     <input class="date col-12 col-md-6" name="DataDostawy" type="text" required>
     <div class="col-12 text-center text-md-left"></div>
 </div>
+
+
 {else}
+
+
 <div class="form-control-* form-row mb-2">
     <label class="col-12 col-md-6 col-form-label text-center text-md-left">Numer PZ</label>
     <input class="col-12 col-md-6" type="text" value="{$data['NumerPZ']}" disabled>
