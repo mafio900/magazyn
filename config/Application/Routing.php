@@ -35,6 +35,14 @@ final class Routing {
     ['GET','/pz/usun/[i:id]?', array('controller' => 'PZ', 'action' => 'delete'), 'pz_delete'],
     ['POST','/pz/edytuj/?', array('controller' => 'PZ', 'action' => 'edit'), 'pz_edit'],
     ['GET','/pz/formularz/?', array('controller' => 'PZ', 'action' => 'ajaxAddForm'), 'pz_add_form'],
-    ['POST','/pz/dodaj/?', array('controller' => 'PZ', 'action' => 'add'), 'pz_add']
+    ['POST','/pz/dodaj/?', array('controller' => 'PZ', 'action' => 'add'), 'pz_add'],
+
+    //konfiguracja PZTowar
+    ['GET','/pztowar/usun/[i:id]?', array('controller' => 'PZTowar', 'action' => 'delete'), 'pztowar_delete'],
+    ['POST','/pztowar/usunwiele/[i:id]?', array('controller' => 'PZTowar', 'action' => 'deletePlenty'), 'pztowar_usunwiele'],
+    ['POST','/pztowar/edytuj/?', array('controller' => 'PZTowar', 'action' => 'edit'), 'pztowar_edit'],
+    ['GET','/pztowar/formularz/[i:id]?', array('controller' => 'PZTowar', 'action' => 'ajaxAddForm'), 'pztowar_form'],
+    ['GET','/pztowar/formedytuj/[i:id]?', array('controller' => 'PZTowar', 'action' => 'ajaxEditForm'), 'pztowar_editForm'],
+    ['POST','/pztowar/dodaj/?', array('controller' => 'PZTowar', 'action' => 'add'), 'pztowar_add']
     ];
 }
