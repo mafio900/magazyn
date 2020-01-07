@@ -2,7 +2,7 @@
 
 {block name=title}Formularz{/block}
 {block name=body}
-    <form id="formularz" class="form-horizontal col-12" action="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=action}{/block}" method="post">
+    <form id="formularz" autocomplete="off" class="form-horizontal col-12" action="{$protocol}{$smarty.server.HTTP_HOST}{$subdir}{block name=action}{/block}" method="post">
         <div class="panel panel-default">
             <div class="panel-body">
                 {block name=formBody}{/block}
