@@ -16,7 +16,7 @@ class WZ extends PDODatabase
         $id = -1;
         $this->testConnection();
         $this->testTable($this->table);
-        if(!isset($Nazwa))
+        if(!isset($NumerWZ))
             throw new \Exceptions\EmptyValue;
         try	{
             $query = 'INSERT INTO `'.$this->table.'` (`NumerWZ`, `IdZamowienie`, `DataWydania`)';

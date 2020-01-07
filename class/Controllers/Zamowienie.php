@@ -53,10 +53,14 @@ class Zamowienie extends GlobalController
             throw new \Exceptions\EmptyValue;
         }
         $model = $this->createModel('Zamowienie');
-        $IdStatus = $model->selectOneById($_POST['id'])['IdStatus']+1;
-        if($IdStatus < 5){
-            if(isset($_POST['DataWydania'])){
+        $data = $model->selectOneById($_POST['id']);
+        $IdStatus = $data['IdStatus']+1;
+        if($IdStatus < 6){
+            if($IdStatus=='5' && isset($_POST['DataWydania'])){
                 $model->update($_POST['id'], $IdStatus, $_POST['DataWydania']);
+                $wz = $this->createModel('WZ');
+                $numerWZ = 'WZ '.$data['id'].date('/d/m/Y');
+                $wz->insert($numerWZ, $data['id'], $_POST['DataWydania']);
             }
             else{
                 $model->update($_POST['id'], $IdStatus);
