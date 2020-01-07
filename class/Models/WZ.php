@@ -11,7 +11,7 @@ class WZ extends PDODatabase
         parent::__construct();
     }
 
-    public function insert($IdZamowienie, $NumerWZ, $DataWydania)
+    public function insert($NumerWZ, $IdZamowienie, $DataWydania)
     {
         $id = -1;
         $this->testConnection();
@@ -19,12 +19,12 @@ class WZ extends PDODatabase
         if(!isset($Nazwa))
             throw new \Exceptions\EmptyValue;
         try	{
-            $query = 'INSERT INTO `'.$this->table.'` (`IdZamowienie`, `NumerWZ`, `DataWydania`)';
-            $query .= ' VALUES (:IdZamowienie, :NumerWZ, :DataWydania)';
+            $query = 'INSERT INTO `'.$this->table.'` (`NumerWZ`, `IdZamowienie`, `DataWydania`)';
+            $query .= ' VALUES (:NumerWZ, :IdZamowienie, :DataWydania)';
             $stmt = $this->pdo->prepare($query);
 
-            $stmt->bindValue(':IdZamowienie', $IdZamowienie, PDO::PARAM_INT);
             $stmt->bindValue(':NumerWZ', $NumerWZ, PDO::PARAM_STR);
+            $stmt->bindValue(':IdZamowienie', $IdZamowienie, PDO::PARAM_INT);
             $stmt->bindValue(':DataWydania', $DataWydania, PDO::PARAM_STR);
             if($stmt->execute()) {
                 $id = $this->pdo->lastInsertId();
