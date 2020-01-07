@@ -30,6 +30,7 @@ final class Routing {
     //konfiguracja PZ
     ['GET','/pz/?', array('controller' => 'PZ', 'action' => 'showAll'), 'pz'],
     ['GET','/pz/editform/[i:id]/?', array('controller' => 'PZ', 'action' => 'showOne'), 'pz_edit_form'],
+    ['GET','/pz/done/[i:id]/?', array('controller' => 'PZ', 'action' => 'setIsDone'), 'pz_setIsDone'],
     ['GET','/pz/[i:id]/?', array('controller' => 'PZ', 'action' => 'ajaxEditForm'), 'pz_show_form'],
     ['GET','/pz/usun/[i:id]?', array('controller' => 'PZ', 'action' => 'delete'), 'pz_delete'],
     ['POST','/pz/edytuj/?', array('controller' => 'PZ', 'action' => 'edit'), 'pz_edit'],

@@ -101,17 +101,24 @@ class PZ extends GlobalController
         $this->redirect('pz/editform/'.$id);
     }
 
-
     public function edit()
     {
-        $this->check(['id', 'TerminRealizacji', 'KwotaLaczna', 'IdStatus', 'IdKlient', 'IdPracownik'], $_POST);
-        if($_POST['TerminRealizacji']=='' && $_POST['KwotaLaczna']=='' && $_POST['IdStatus']=='' && $_POST['IdKlient']=='' && $_POST['IdPracownik']=='' && $_POST['id']=='')
-        {
+        $this->check(['id', 'NumerPZ', 'IdDostawca', 'DataDostawy'], $_POST);
+        if($_POST['id']=='' && $_POST['NumerPZ']=='' && $_POST['IdDostawca']=='' && $_POST['DataDostawy']==''){
             throw new \Exceptions\EmptyValue;
         }
-        $model = $this->createModel('Rezerwacja');
-        $model->update($_POST['id'], $_POST['TerminRealizacji'], $_POST['KwotaLaczna'], $_POST['IdStatus'], $_POST['IdKlient'], $_POST['IdPracownik']);
-        $this->redirect("rezerwacja/".$_POST['id']);
+        $model = $this->createModel('PZ');
+        $dostawca = $model->selectOneById($_POST['IdDostawca'], 'Dostawca');
+        $model->update($_POST['id'], $_POST['NumerPZ'], $_POST['IdDostawca'], $dostawca['NazwaDostawcy'], $dostawca['Miasto'],
+        $dostawca['Ulica'], $dostawca['NrBudynku'], $dostawca['KodPocztowy'], $dostawca['NIP'], $_POST['DataDostawy']);
+        $this->redirect('pz/editform/'.$_POST['id']);
+    }
+
+    public function setIsDone($id)
+    {
+        $model = $this->createModel('PZ');
+        $model->setIsDone($id);
+        $this->redirect('pz/');
     }
 
 }

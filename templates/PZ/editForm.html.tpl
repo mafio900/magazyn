@@ -23,4 +23,4 @@
     <input class="col-12 col-md-6" value="{$data['KwotaLaczna']}" type="text" disabled>
     <div class="col-12 text-center text-md-left"></div>
 </div>
-{if isset($data['id'])}<input name="id" value="{$data['id']}" type="hidden" required>{/if}
+<input name="id" value="{$data['id']}" type="hidden" required>

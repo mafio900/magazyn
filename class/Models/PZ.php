@@ -79,4 +79,28 @@ class PZ extends PDODatabase
         }
         return $id;
     }
+
+    public function setIsDone($id)
+    {
+        $this->testConnection();
+        $this->testTable($this->table);
+
+        if(!isset($id))
+            throw new \Exceptions\EmptyValue;
+        try	{
+            $query = 'UPDATE `'.$this->table.'`';
+            $query .= ' SET IsDone = true';
+            $query .= ' WHERE id = :id';
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            if($stmt->execute()) {
+                $id = $this->pdo->lastInsertId();
+            }
+            $stmt->closeCursor();
+        } catch(\PDOException $e) {
+            throw new \Exceptions\Query($e);
+        }
+        return $id;
+    }
 }
