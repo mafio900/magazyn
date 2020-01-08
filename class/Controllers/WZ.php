@@ -28,6 +28,7 @@ class WZ extends GlobalController
         $result['zamowienia'] = $model->transferByColumn($model->selectAll('Zamowienie'));
         $result['users'] = $model->transferByColumn($model->selectAll('Uzytkownik'));
         $result['towary'] = $model->transferByColumn($model->selectAll('Towar'));
+        $result['jednostki'] = $model->transferByColumn($model->selectAll('JednostkaMiary'));
         $result['zamowienietowary'] = $model->transferByColumn($model->selectAllOrderBy(null, 'ASC', 'IdZamowienie =', $result['data']['IdZamowienie'], 'ZamowienieTowar'));
 
         return $result;

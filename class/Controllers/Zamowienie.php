@@ -39,6 +39,7 @@ class Zamowienie extends GlobalController
         $result['statusNastepny'] = $model->selectOneById($result['data']['IdStatus'] + 1, 'Status');
         $result['users'] = $model->transferByColumn($model->selectAll('Uzytkownik'));
         $result['towary'] = $model->transferByColumn($model->selectAll('Towar'));
+        $result['jednostki'] = $model->transferByColumn($model->selectAll('JednostkaMiary'));
         $result['zamowienietowary'] = $model->transferByColumn($model->selectAllOrderBy(null, 'ASC', 'IdZamowienie =', $id, 'ZamowienieTowar'));
         if($result['data']['IdStatus']=='4')
             $result['currentData'] = date('Y-m-d H:i');

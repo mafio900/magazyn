@@ -36,6 +36,7 @@
             <th>Nazwa</th>
             <th>Cena sprzedaży</th>
             <th>Ilość</th>
+            <th>Jednostka miary</th>
         </tr>
     </thead>
     <tbody>
@@ -44,6 +45,7 @@
                 <td>{$towary[$zamowienietowar['IdTowar']]['Nazwa']}</td>
                 <td>{$zamowienietowar['CenaSprzedazy']}</td>
                 <td>{$zamowienietowar['Ilosc']}</td>
+                <td>{$jednostki[$towary[$zamowienietowar['IdTowar']]['IdJednostkaMiary']]['Nazwa']}</td>
             </tr>
         {/foreach}
     </tbody>
